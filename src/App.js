@@ -1,40 +1,43 @@
-import Button from "./Button";
-import styles from "./App.module.css";
 import { useState, useEffect } from "react";
 
 function App() {
-  const [counter, setValue] = useState(0);
-  const [keyword, setKeyword] = useState("");
-  const onClick = () => setValue((prev) => prev + 1);
-  const onChange = (event) => setKeyword(event.target.value);
-  console.log("i run all the time");
-
+  const [loading, setLoading] = useState(true);
+  const [coins, setCoins] = useState([]);
+  const [usd, setUSD] = useState(0);
+  const onChange = (evnet) => setUSD(evnet.target.value);
   useEffect(() => {
-    console.log("I run only once.");
-  }, []); // 코드가 한 번만 실행 하도록 보호 해줌
-
-  useEffect(() => {
-    console.log("I run when 'keyword' chnages.");
-  }, [keyword]); // 'keyword'가 변화할 때 코드를 실행할 거라고 react.js에게 알려주는역할
-
-  useEffect(() => {
-    console.log("I run when 'counter' chnages.");
-  }, [counter]);
-
-  useEffect(() => {
-    console.log("I run when keyword & conuter change");
-  }, [keyword, counter]);
-
+    fetch("https://api.coinpaprika.com/v1/tickers")
+      .then((response) => response.json())
+      .then((json) => {
+        setCoins(json);
+        setLoading(false);
+      });
+  }, []);
   return (
     <div>
-      <input
-        value={keyword}
-        onChange={onChange}
-        type="text"
-        placeholder="Search here"
-      />
-      <h1>{counter}</h1>
-      <button onClick={onClick}>Click me</button>
+      <h1>The Coins! {loading ? "" : `(${coins.length})`}</h1>
+      {loading ? (
+        <strong>Loading...</strong>
+      ) : (
+        <select>
+          {coins.map((coin) => (
+            <option key={coin.id} value={coin.symbol}>
+              {coin.name} ({coin.symbol}): {coin.quotes.USD.price} USD
+            </option>
+          ))}
+        </select>
+      )}
+      <hr />
+      <h2>USD TO Coin Convert</h2>
+      <div>
+        <input
+          value={usd}
+          onChange={onChange}
+          type="number"
+          placeholder="write to USD"
+        />
+      </div>
+      <input type="number" disabled="true" />
     </div>
   );
 }
