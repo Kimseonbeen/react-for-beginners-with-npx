@@ -1,11 +1,20 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import styles from "./Movie.module.css";
+import defaultImg from "./logo192.png";
 
 function Movie({ id, coverImg, title, year, summary, genres }) {
+  const handleImgError = (e) => {
+    e.target.src = defaultImg;
+  };
   return (
     <div className={styles.movie}>
-      <img src={coverImg} alt={title} className={styles.movie__img} />
+      <img
+        src={coverImg}
+        onError={handleImgError}
+        alt={title}
+        className={styles.movie__img}
+      />
       <h2 className={styles.movie__title}>
         <Link to={`/movie/${id}`}>{title}</Link>
       </h2>
