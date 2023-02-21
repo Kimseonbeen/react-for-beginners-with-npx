@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/react-for-beginners-with-npx/static/js/main.7d07ecdb.js",
+    "index.html": "/react-for-beginners-with-npx/index.html",
+    "main.7d07ecdb.js.map": "/react-for-beginners-with-npx/static/js/main.7d07ecdb.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.7d07ecdb.js"
+  ]
+}
