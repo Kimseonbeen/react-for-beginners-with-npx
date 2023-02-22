@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Movie from "../components/Movie";
 import styles from "./Home.module.css";
+import loadingImg from "./img.gif";
 
 function Home() {
   const [loading, setLoading] = useState(true);
@@ -22,7 +23,7 @@ function Home() {
     <div className={styles.container}>
       {loading ? (
         <div className={styles.loader}>
-          <span>Loading...</span>
+          <img src={loadingImg} />
         </div>
       ) : (
         <div className={styles.movies}>

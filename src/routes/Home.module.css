@@ -22,6 +22,54 @@
   padding-top: 70px;
 }
 
+.point_bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  filter: brightness(50%);
+}
+
+.point_show {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  z-index: 8;
+  display: flex;
+  align-items: center;
+}
+
+.point_img {
+  height: 345px;
+}
+
+.point_textbox {
+  padding: 0 16px 0 32px;
+  width: 300px;
+  height: 345px;
+}
+
+.point_textbox ul {
+  padding: 0 0 0 20px;
+  color: #fff;
+  font-size: 18px;
+}
+
+.point_title {
+  font-weight: 700;
+  font-size: 28px;
+}
+
+.point_title a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.home_container {
+  height: 100%;
+}
+
 @media screen and (max-width: 1090px) {
   .movies {
     grid-template-columns: 1fr;
